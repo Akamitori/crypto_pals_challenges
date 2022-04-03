@@ -1,4 +1,4 @@
-pub fn parse(s: &str) -> Vec<u8> {
+pub fn parse_from_string(s: &str) -> Vec<u8> {
     let mut s = s.clone();
     let is_hex = s.starts_with("0x");
 
@@ -11,6 +11,16 @@ pub fn parse(s: &str) -> Vec<u8> {
     let hexs = split_hex_from_str(s);
     let hex_bytes = pair_hex_to_bytes(hexs);
     return hex_bytes;
+}
+
+pub fn parse_from_buffer(hex: &Vec<u8>) -> String {
+    let f = hex
+        .clone()
+        .into_iter()
+        .map(|i| format!("{:02x}", i))
+        .collect::<String>();
+
+    return f;
 }
 
 fn split_hex_from_str(hex_str: &str) -> Vec<u8> {
