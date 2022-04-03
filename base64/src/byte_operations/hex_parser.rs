@@ -1,4 +1,4 @@
-pub fn parse_hex(s: &str) -> Vec<u8> {
+pub fn parse(s: &str) -> Vec<u8> {
     let mut s = s.clone();
     let is_hex = s.starts_with("0x");
 
