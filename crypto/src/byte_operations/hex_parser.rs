@@ -23,6 +23,12 @@ pub fn parse_from_buffer(hex: &Vec<u8>) -> String {
     return f;
 }
 
+pub fn parse_utf8_from_buffer(hex: &Vec<u8>) -> String {
+    let f = hex.into_iter().map(|i| *i as char).collect::<String>();
+
+    return f;
+}
+
 fn split_hex_from_str(hex_str: &str) -> Vec<u8> {
     let mut raise_power = false;
     let mut counter = 0;

@@ -13,21 +13,11 @@ fn main() {
 
     println!("{}", res);
 
-    let b1 = "0x1c0111001f010100061a024b53535009181c";
-    let b2 = "0x686974207468652062756c6c277320657965";
+    let encrypted_text = "0x1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736";
 
-    let b1 = crypto_utils::parse_hex_from_string(&b1);
-    let b2 = crypto_utils::parse_hex_from_string(&b2);
+    let encrypted_text = crypto_utils::parse_hex_from_string(&encrypted_text);
 
-    let b3 = crypto_lib_set_1::fixed_xor(&b1, &b2);
+    let decrypted_text = crypto_lib_set_1::decipher_text(&encrypted_text);
 
-    let res = b3
-        .clone()
-        .into_iter()
-        .map(|i| i as char)
-        .collect::<String>();
-
-    println!("xor is {}", res);
-
-    let b3 = crypto_lib_set_1::fixed_xor(&b3, &b2);
+    println!("{}", decrypted_text);
 }
