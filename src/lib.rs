@@ -1,10 +1,10 @@
 use std::{
     fs::File,
     io::{BufRead, BufReader},
-    string,
 };
 
-use crypto::{crypto_lib_set_1, crypto_utils};
+use crypto::crypto_lib_set_1;
+use crypto::crypto_utils;
 
 pub fn get_base64(input: &str) -> String {
     let y = crypto_utils::parse_hex_from_string(&input);
@@ -44,4 +44,8 @@ pub fn decipher_lines(file_path: &str) -> (String, u32, usize) {
     return (chosen, score, line);
 }
 
-pub fn encrypt_with_repeating_XOR(input: String, key: String) {}
+pub fn encrypt_with_repeating_xor(input: &str, key: &str) -> Vec<u8> {
+    let input = crypto_utils::parse_hex_from_string(&input);
+    let key = crypto_utils::parse_hex_from_string(&key);
+    return crypto_lib_set_1::repeat_xor(&input, &key);
+}

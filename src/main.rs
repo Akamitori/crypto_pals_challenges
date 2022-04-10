@@ -1,16 +1,15 @@
-use crypto_pals_1::decipher_lines;
-use crypto_pals_1::decrypt_text;
-use crypto_pals_1::get_base64;
+use crypto::crypto_utils::parse_string_from_hex;
+use crypto_pals_1::encrypt_with_repeating_xor;
 
 fn main() {
-    let res = get_base64("0x49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d");
+    let input = "Burning 'em, if you ain't quick and nimble
+    I go crazy when I hear a cymbal";
 
-    let (decrypted_text, encyrption_score) =
-        decrypt_text("0x1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736");
+    let key = "ICE";
 
-    println!("{} {}", decrypted_text, encyrption_score);
+    let result = encrypt_with_repeating_xor(input, key);
 
-    let result = decipher_lines("C:\\lines.txt");
+    let result = parse_string_from_hex(&result);
 
-    println!("{} {} {}", result.0, result.1, result.2);
+    println!("{}", result);
 }
