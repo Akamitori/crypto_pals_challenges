@@ -1,12 +1,12 @@
 use crate::{crypto_lib_set_1, crypto_utils, set_1::plaintext_scorer::produce_scoring};
 
-pub fn decipher_text(encrypted_text: &Vec<u8>) -> String {
+pub fn decipher_text(encrypted_text: &Vec<u8>) -> (String, u32) {
     let encryption_key_scores = produce_scoring(&encrypted_text);
 
-    let encryption_byte = *encryption_key_scores
+    let (encryption_byte, encryption_score) = encryption_key_scores
         .iter()
         .max_by(|a, b| a.1.cmp(&b.1))
-        .map(|(k, _v)| k)
+        .map(|(k, v)| (*k, *v))
         .unwrap();
 
     let decryption_key = vec![encryption_byte as u8; encrypted_text.len()];
@@ -16,5 +16,5 @@ pub fn decipher_text(encrypted_text: &Vec<u8>) -> String {
         &decryption_key,
     ));
 
-    return decrypted_text;
+    return (decrypted_text, encryption_score);
 }

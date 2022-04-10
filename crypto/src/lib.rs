@@ -2,22 +2,23 @@ mod byte_operations;
 mod set_1;
 
 pub mod crypto_lib_set_1 {
-    use std::collections::HashMap;
-
     use crate::set_1::base64_converter;
     use crate::set_1::decipher;
-    use crate::set_1::fixed_xor;
-    use crate::set_1::plaintext_scorer;
+    use crate::set_1::xor_operations;
 
     pub fn calculate_base_64(hex: &Vec<u8>) -> Vec<u8> {
         return base64_converter::convert(hex);
     }
 
-    pub fn fixed_xor(hex1: &Vec<u8>, hex2: &Vec<u8>) -> Vec<u8> {
-        return fixed_xor::execute(&hex1, &hex2);
+    pub fn fixed_xor(buffer_1: &Vec<u8>, buffer_2: &Vec<u8>) -> Vec<u8> {
+        return xor_operations::buffer_xor(&buffer_1, &buffer_2);
     }
 
-    pub fn decipher_text(text: &Vec<u8>) -> String {
+    pub fn repeat_xor(buffer_1: &Vec<u8>, repeating_key: &Vec<u8>) -> Vec<u8> {
+        return xor_operations::repeating_key_xor(buffer_1, repeating_key);
+    }
+
+    pub fn decipher_text(text: &Vec<u8>) -> (String, u32) {
         return decipher::decipher_text(&text);
     }
 }
