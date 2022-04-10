@@ -1,4 +1,2 @@
-pub mod base64_converter;
-pub mod decipher;
+pub mod decipherer;
 pub mod plaintext_scorer;
-pub mod xor_operations;

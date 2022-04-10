@@ -41,16 +41,14 @@ fn map_sexlets_to_bytes(mut sexlets: Vec<u8>, bytes_to_ignore: usize) -> Vec<u8>
 
     let sexlets: Vec<u8> = sexlets
         .into_iter()
-        .map(
-            |f| match f {
-                0..=25 => first_upper + f,
-                26..=51 => first_lower + (f - 26),
-                52..=61 => first_num + (f - 52),
-                62 => '+' as u8,
-                63 => '/' as u8,
-                _ => '=' as u8,
-            }, //let capitalLetter=0..26.contains(&f as i32);
-        )
+        .map(|f| match f {
+            0..=25 => first_upper + f,
+            26..=51 => first_lower + (f - 26),
+            52..=61 => first_num + (f - 52),
+            62 => '+' as u8,
+            63 => '/' as u8,
+            _ => '=' as u8,
+        })
         .collect();
 
     return sexlets;
