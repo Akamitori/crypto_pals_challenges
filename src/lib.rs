@@ -15,6 +15,12 @@ pub fn get_base64(input: &str) -> String {
     res
 }
 
+pub fn reverse_base64(input: &str) -> String {
+    let y = crypto_utils::parse_hex_from_string(&input);
+    let res = crypto_lib_set_1::reverse_base_64(&y);
+    return crypto_utils::parse_string_from_hex(&res);
+}
+
 pub fn decrypt_text(encrypted_text: &str) -> (String, u32) {
     let encrypted_text = crypto_utils::parse_hex_from_string(&encrypted_text);
     let (decrypted_text, encryption_score) = crypto_lib_set_1::decipher_text(&encrypted_text);
@@ -48,4 +54,11 @@ pub fn encrypt_with_repeating_xor(input: &str, key: &str) -> Vec<u8> {
     let input = crypto_utils::parse_hex_from_string(&input);
     let key = crypto_utils::parse_hex_from_string(&key);
     return crypto_lib_set_1::repeat_xor(&input, &key);
+}
+
+pub fn calculate_hemming_distance(input_1: &str, input_2: &str) -> u32 {
+    let a = crypto_utils::parse_hex_from_string(&input_1);
+    let b = crypto_utils::parse_hex_from_string(&input_2);
+
+    return crypto_lib_set_1::calculate_hemming_distance(&a, &b);
 }

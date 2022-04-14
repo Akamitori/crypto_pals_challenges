@@ -14,13 +14,16 @@ pub fn from_string(s: &str) -> Vec<u8> {
 }
 
 pub fn from_buffer(hex: &Vec<u8>) -> String {
+    let mut result = "0x".to_string();
     let f = hex
         .clone()
         .into_iter()
         .map(|i| format!("{:02x}", i))
         .collect::<String>();
 
-    return f;
+    result.push_str(&f);
+
+    return result;
 }
 
 pub fn to_utf8_string(hex: &Vec<u8>) -> String {

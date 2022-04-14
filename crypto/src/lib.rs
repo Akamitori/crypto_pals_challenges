@@ -4,11 +4,16 @@ mod set_1;
 
 pub mod crypto_lib_set_1 {
     use crate::base64;
+    use crate::byte_operations::hemming_distace;
     use crate::byte_operations::xor;
     use crate::set_1::decipherer;
 
     pub fn calculate_base_64(hex: &Vec<u8>) -> Vec<u8> {
-        return base64::converter::convert(hex);
+        return base64::converter::from_hex(hex);
+    }
+
+    pub fn reverse_base_64(base64: &Vec<u8>) -> Vec<u8> {
+        return base64::converter::to_hex(base64);
     }
 
     pub fn fixed_xor(buffer_1: &Vec<u8>, buffer_2: &Vec<u8>) -> Vec<u8> {
@@ -21,6 +26,10 @@ pub mod crypto_lib_set_1 {
 
     pub fn decipher_text(text: &Vec<u8>) -> (String, u32) {
         return decipherer::decipher_text(&text);
+    }
+
+    pub fn calculate_hemming_distance(buffer_1: &Vec<u8>, buffer_2: &Vec<u8>) -> u32 {
+        return hemming_distace::calculate(buffer_1, buffer_2);
     }
 }
 
