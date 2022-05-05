@@ -1,6 +1,6 @@
 use crate::{crypto_lib_set_1, crypto_utils, set_1::plaintext_scorer::produce_scoring};
 
-pub fn decipher_text(encrypted_text: &Vec<u8>) -> (String, u32) {
+pub fn decipher_text(encrypted_text: &Vec<u8>) -> (String, char, u32) {
     let encryption_key_scores = produce_scoring(&encrypted_text);
 
     let (encryption_byte, encryption_score) = encryption_key_scores
@@ -16,5 +16,5 @@ pub fn decipher_text(encrypted_text: &Vec<u8>) -> (String, u32) {
         &decryption_key,
     ));
 
-    return (decrypted_text, encryption_score);
+    return (decrypted_text, encryption_byte, encryption_score);
 }

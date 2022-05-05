@@ -24,7 +24,7 @@ pub mod crypto_lib_set_1 {
         return xor::repeating_key_xor(buffer_1, repeating_key);
     }
 
-    pub fn decipher_text(text: &Vec<u8>) -> (String, u32) {
+    pub fn decipher_text(text: &Vec<u8>) -> (String, char, u32) {
         return decipherer::decipher_text(&text);
     }
 

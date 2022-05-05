@@ -1,5 +1,3 @@
-use crate::crypto_utils;
-
 pub fn from_hex(hex: &Vec<u8>) -> Vec<u8> {
     let mut hex = hex.clone();
     let extra_bytes = pad_with_extra_bytes(&mut hex);

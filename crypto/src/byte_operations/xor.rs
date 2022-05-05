@@ -2,8 +2,13 @@ pub fn buffer_xor(buffer1: &Vec<u8>, buffer2: &Vec<u8>) -> Vec<u8> {
     let mut result = Vec::new();
 
     match buffer1.len() {
-        _ if buffer1.len() != buffer2.len() => panic!("buffer lengths should be equal"),
-        0 => panic!("buffer lengths should be equal"),
+        _ if buffer1.len() != buffer2.len() => {
+            panic!(
+                "{}",
+                format!("buffer lengths should be equal {:?} {:?}", buffer1, buffer2)
+            )
+        }
+        0 => panic!("buffer lengths should not be 0"),
         _ => {}
     };
 
