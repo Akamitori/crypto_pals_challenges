@@ -13,7 +13,7 @@ pub fn to_hex(base64: &Vec<u8>) -> Vec<u8> {
     let mut hex = base64.clone();
 
     let exta_bytes = map_bytes_to_sexlets(&mut hex);
-
+adada
     let grouped_bytes = unite_sexlets_to_bytes(&hex);
 
     let raw_bytes = seperate_bytes_groups_to_single_bytes(grouped_bytes, exta_bytes);
